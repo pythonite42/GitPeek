@@ -42,7 +42,10 @@ class _GitHubSearchScreenState extends State<GitHubSearchScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * 0.04,
+          horizontal: MediaQuery.of(context).size.width * 0.06,
+        ),
         child: Column(
           children: [
             TextField(
