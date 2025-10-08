@@ -75,8 +75,8 @@ class _GitHubSearchScreenState extends State<GitHubSearchScreen> {
                       itemBuilder: (context, index) {
                         final Repo repo = state.repos[index];
                         return ListTile(
-                          title: Text(repo.name),
-                          subtitle: Text(repo.description ?? ''),
+                          title: Text(repo.name, style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: repo.description != null ? Text(repo.description!) : null,
                           trailing: Text(repo.language ?? ''),
                         );
                       },
