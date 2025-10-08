@@ -14,14 +14,28 @@ class GithubService {
         final List data = jsonDecode(response.body);
         return data.map((repoJson) => Repo.fromJson(repoJson)).toList();
       } else if (response.statusCode == 404) {
-        throw Exception('User konnte nicht gefunden werden');
+        throw HttpException('User konnte nicht gefunden werden');
       } else {
-        throw Exception('Repositories konnten nicht geladen werden');
+        throw HttpException('Repositories konnten nicht geladen werden');
       }
     } on SocketException {
-      throw Exception('Fehlende Internetverbindung');
+      throw HttpException('Fehlende Internetverbindung');
     } catch (e) {
-      rethrow;
+      if (e is HttpException) {
+        rethrow;
+      }
+      throw HttpException('Ein unerwarteter Fehler ist aufgetreten');
     }
+  }
+}
+
+class HttpException implements Exception {
+  HttpException(this.message);
+
+  final String message;
+
+  @override
+  String toString() {
+    return message;
   }
 }
