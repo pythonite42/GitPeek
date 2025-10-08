@@ -35,7 +35,12 @@ class _GitHubSearchScreenState extends State<GitHubSearchScreen> {
     final cubit = context.read<GithubCubit>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('GitPeek')),
+      appBar: AppBar(
+        title: const Text('GitPeek', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
