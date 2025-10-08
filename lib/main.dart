@@ -9,6 +9,8 @@ void main() {
 }
 
 class GitPeekApp extends StatelessWidget {
+  const GitPeekApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,8 +21,10 @@ class GitPeekApp extends StatelessWidget {
 }
 
 class GitHubSearchScreen extends StatefulWidget {
+  const GitHubSearchScreen({super.key});
+
   @override
-  _GitHubSearchScreenState createState() => _GitHubSearchScreenState();
+  State<GitHubSearchScreen> createState() => _GitHubSearchScreenState();
 }
 
 class _GitHubSearchScreenState extends State<GitHubSearchScreen> {
@@ -47,13 +51,14 @@ class _GitHubSearchScreenState extends State<GitHubSearchScreen> {
                   },
                 ),
               ),
+              onSubmitted: (value) => cubit.fetchRepos(value.trim()),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Expanded(
               child: BlocBuilder<GithubCubit, GithubState>(
                 builder: (context, state) {
-                  if (state is GithubInitial) {
-                    return const Center(child: Text('Benutzername eingeben'));
+                  if (state is GithubInitial || _controller.text.isEmpty) {
+                    return const Center(child: Text('Username eingeben'));
                   } else if (state is GithubLoading) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is GithubLoaded) {
