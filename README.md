@@ -34,7 +34,7 @@ The project demonstrates API integration, state management with **BLoC/Cubit**, 
 ## 🚀 Getting Started  
 ```bash
 git clone https://github.com/pythonite42/GitPeek
-cd gitPeek
+cd gitpeek
 flutter pub get
 flutter run
 ```
